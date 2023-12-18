@@ -1,18 +1,19 @@
 package manejo;
 
+import creacion.ManejarArchivo;
+import escritura.escribirInformacion;
+import lectura.LecturaArchivos;
+
 import java.io.*;
 
 public class ManejoArchivos {
     public static void main(String[] args) {
 
-        File archivo = new File("resources/pruebaJava.txt");
+        File archivo = ManejarArchivo.crear("resources/pruebaJava.txt");
 
-        try {
-            PrintWriter salida = new PrintWriter(new FileWriter(archivo));
-            salida.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        System.out.println("El archivo se ha creado correctamente");
+        escribirInformacion.escribirLinea(archivo, "El perro de San Roque no tiene rabo");
+        escribirInformacion.anexarLinea(archivo, "porque Ramón Ramírez se lo ha cortado");
+
+        LecturaArchivos.lectura(archivo);
     }
 }
